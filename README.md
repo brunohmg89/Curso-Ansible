@@ -1,2 +1,9 @@
-# Udemy-Ansible
-Curso sobre Ansible pela Udemy
+# Udemy - Ansible
+
+## Descrição
+
+Curso sobre Ansible.
+
+# Status do curso
+
+Em andamento...
