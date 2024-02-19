@@ -82,14 +82,86 @@
     - O que significa Ad-hoc: Ad hoc significa “para esta finalidade", “para isso” ou "para este efeito". É uma expressão latina, geralmente usada para informar que determinado acontecimento tem caráter temporário e que se destina para aquele fim específico.
     - Um exame ad hoc, um método ad hoc, um cargo ou uma função ad hoc, são exemplos que definem a criação de algo provisório, que vai atender apenas determinado propósito.
     - ADHOC no Ansible, São comandos executados diretamente na linha de comando com a instrução que deseja, vamos supor que você precise dar um start/stop/restart em um serviço em uma série de servidores, ou você precise saber quais servidores estão com a configuração X, ou ver espaço em disco, memória, ou talvez você queira instalar um pacote, enfim são N possibilidades, mais você só quer fazer isso em um dado momento e não necessariamente guardar essa configuração em playbook.
-    Parametro | Descrição
-    :---------|:---------
-    -i| Apresentar a localização do inventário
-    -u | Apresentar o usuário que executará o comando
-    -k | Solicitar a senha do usuário.
-    -m | Módulo que será utilizado.
-    -b | Substituir para o usuário root caso precisar.
-    -a | argumento do módulo.
+    
+        Parametro   | Descrição
+        ---------   |---------
+        -i          | Apresentar a localização do inventário
+        -u          | Apresentar o usuário que executará o comando
+        -k          | Solicitar a senha do usuário.
+        -m          | Módulo que será utilizado.
+        -b          | Substituir para o usuário root caso precisar.
+        -a          | argumento do módulo.
+
+## Conhecendo módulos com o comando Ad-hoc
+
+11. Introdução aos módulos
+    - São utilizados para rodar comandos especificos nas máquinas
+    - Site com todos os módulos do Ansible <https://docs.ansible.com/ansible/2.9/modules/modules_by_category.html>
+
+12. Módulo - Shell
+    - Executando um teste com os comandos shell `chdir` e `create`
+    - `ansible -i hosts host-ubuntu -m shell -a "chdir=/tmp touch exemplo1.txt"` *Mudar de diretório e criar um arquivo*
+    - `ansible -i hosts host-ubuntu -m shell -a "chdir=/tmp creates=exemplo1.txt touch exemplo2.txt"` *Só criar o arquivo 2 se o 1 não existir*
+
+13. Módulo - Copy
+    - Módulo para copiar arquivos
+    - `ansible -i hosts host-ubuntu -m copy -a "src=teste.txt dest=/tmp"` *copiando um arquivo de um local para outro*
+    - `ansible -i hosts host-ubuntu -m copy -a "src=teste.txt dest=/tmp mode='u=rwx,g=r,o=r'"` *concedendo permissões especificas*
+    - `ansible -i hosts host-ubuntu -m copy -a "src=teste.txt dest=/tmp mode=742"` *mesmo exemplo, porém utilizando permissionamento com número*
+    - `ansible -b -i hosts host-ubuntu -m copy -a "src=teste.txt dest=/tmp group=root owner=root"` *alterando o grupo e dono do arquivo*
+
+14. Módulos Apt, Yum e Package
+    - Instalando pacotes em distribuições debian
+    - `ansible -i hosts host-ubuntu -b -m apt -a "name=cmatrix state=present update_cache=yes"` *instalando o pacote `cmatrix` e atualizado o apt*
+    - `ansible -i hosts host-ubuntu -b -m apt -a "name=cmatrix state=absent"` *Removendo um pacote*
+    - `ansible -i hosts host-centos -b -m yum -a "name=telnet state=present"` *instalando um pacote em S.O rpm*
+    - `ansible -i hosts host-centos -b -m yum -a "name=telnet state=absent"` *removendo pacote pelo yum*
+    - `ansible -i hosts host-centos -b -m package -a "name=telnet state=present"` *instalando com o módulo package para sistemas genéricos onde o ansible "descobre" qual é o sistema e instala com o mais adequado*
+
+15. Módulo setup, coletando facts
+    - facts são informações sobre o sistema operacional
+    - `ansible -i hosts host-ubuntu -m setup` *trazendo todas as informações sobre o sistema operacional*
+    - `ansible -i hosts host-ubuntu -m setup -a "filter=ansible_distribution"` *filtrando informações com o argumente `filter`*
+
+16. Módulo Git
+    - `ansible -i hosts host-ubuntu -m git -a "repo=https://github.com/ansible/ansible-examples.git dest=/tmp/ansible-examples"` *Fazendo clone de um repositório em um destino especifico*
+    - `ansible -i hosts host-ubuntu -m git -a "repo=https://github.com/ansible/ansible-examples.git dest=/tmp/ansible-examples version=festdemo"` *indicando a branch que será utilizada*
+
+17. Módulo uri
+    - Testando urls
+    - `ansible localhost -m uri -a "url=https://http.cat/ status_code=200"` *testando status 200*
+    - `ansible localhost -m uri -a "url=https://http.cat/ status_code=301"` *testando outro status e dando falha na execução*
+    - `ansible localhost -m uri -a "url=https://http.cat/ status_code=301" | grep -i "failed" | wc -l` *comando para contar quantas vezes deu "erro" nas páginas (extra)*
+    - `ansible localhost -m uri -a "url=https://http.cat/ status_code=200 return_content=yes"` *argumente `return_content` para trazer o corpo do site*
+
+18. Módulo filesystem
+    - Concede um tipo de filesystem a um disco
+    - `ansible -b -i hosts host-ubuntu -m filesystem -a "fstype=ext4 dev=/dev/sdb"` *formando um disco remoto em ext4*
+    - `ansible -b -i hosts host-ubuntu -m filesystem -a "fstype=ext3 dev=/dev/sdb force=yes"` *sobrescrevendo com o argumento `force`*
+
+19. Módulo mount
+    - Módulo para montagem de discos
+    - `ansible -b -i hosts host-ubuntu -m mount -a "src=/dev/sdb path=/mnt fstype=ext3 state=mounted opts=rw,auto"` *montando a partição que criamos anteriormente utilizando vários argumentos*
+
+20. Módulo at e cron
+    - Módulo at agenda a execução de um script ou comando
+    - `ansible -i hosts host-ubuntu -m at -a "command='echo ola > /tmp/ola.txt' count=1 units=minutes"` *executando um comando após 1 minuto*
+    - Módulo cron para agendar no crontab
+    - `ansible -b -i hosts host-ubuntu -m cron -a "name='agendar upgrade' hour=1 user=root job='apt update && apt upgrade'"` *agendando uma tarefa ao crontab*
+
+21. Módulo service
+    - Módulo para configurar serviços do S.O.
+    - `ansible -b -i hosts host-ubuntu -m service -a "name=sshd state=restarted enabled=yes"` *realizando um restart do serviço do ssh*
+
+22. Módulo timezone
+    - Módulo para configuração do timezone
+    - `ansible -i hosts host-ubuntu -b -m timezone -a "name=America/Sao_Paulo"` *alterando o timezone*
+
+## Primeiro Playbook
+
+23. Sintaxe Yaml
+    - 
+
 
 
 
