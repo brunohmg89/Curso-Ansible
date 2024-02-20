@@ -160,8 +160,43 @@
 ## Primeiro Playbook
 
 23. Sintaxe Yaml
+    - Explicado como é criado um arquivo YAML e como ele é utilizado.
+
+24. Instalando e habilitando o Nginx
+    - Vamos criar nosso primeiro playbook
+    - Resumo:
+        - Instalar o Nginx garantindo que está ativo e iniciando com o sistema
+        - Garantir que o arquivo de configuração do Nginx esteja integro e fazer o deploy de uma página
+        - Aprender a criar template baseado em variaveis dos facts, retornamos pelo módulo setup
+        - Fazer o deploy do template
+
+25. Deploy do index e garantindo integridade das configurações
+    - Continuação do playbook iniciado na aula anterior.
+
+26. Handlers
+    - Melhorando playbook criado anteriormente
+    - Tomar cuidado, o Ansible é case sentive o mesmo nome dado ao `notify` precisa ser dado ao `handler`
+
+27. Executando vários Handlers
+    - Melhorando playbook criado anteriormente, utilizando vários Handlers
+
+28. Criando templates
+    - Utilizando template com arquivo de extensão `.j2` trazendo facts do servidor
+
+## Variáveis em Playbooks
+
+29. Introdução as váriaveis
+    - Verificando váriaveis válidas e não válidas
+
+30. Váriaveis dentro do playbook
+    - Criando novo playbook
+    - mostrando em tela váriaveis decladas
+
+31. Alterando váriaveis via linha de comando
+    - `ansible-playbook playbook.yaml -e username=morpheus` *comando para declarar váriaveis via linha de comando do Ansible*
+
+32. Váriaveis no diretório host_vars
+    - criando um diretorio `host_vars` e declarando váriaveis
+
+33. Declarar facts no playbook
     - 
-
-
-
-

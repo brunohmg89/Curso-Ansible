@@ -1,0 +1,38 @@
+---
+- hosts: proxy
+  become: yes
+  tasks:
+  - name: Instalando Nginx
+    apt: 
+      update_cache: yes
+      name: nginx
+      state: latest
+  - name: Habilitar Nginx
+    service:
+      name: nginx
+      enabled: yes
+      state: started
+  - name: Deploy do index
+    template:
+      src: index.html.j2
+      dest: /var/www/html/index.html
+    notify: 
+      - Restart Nginx
+      - Log
+
+  - name: Copiar arquivo Nginx
+    copy:
+      src: nginx.conf
+      dest: /etc/nginx/nginx.conf
+      mode: 644
+      owner: root
+      group: root
+
+  handlers:
+    - name: Restart Nginx
+      service:
+        name: nginx
+        state: restarted
+    - name: Log
+      shell: echo "$(date) - Executado Deploy" >> /var/log/handlers.log
+...
