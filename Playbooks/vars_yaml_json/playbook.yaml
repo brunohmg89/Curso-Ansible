@@ -1,0 +1,16 @@
+---
+- name: coletar variaveis de arquivo
+  hosts: all
+  vars_files: 
+    - vars.yaml
+    - vars.json
+  gather_facts: false
+  tasks:
+    - name: ver variaveis
+      debug:
+        msg:
+          - "Meu nome é {{ NOME }}"
+          - "Estou fazendo curso de {{ CURSO }}"
+          - "E estou aprendendo sobre {{ SESSAO }}"
+          - "A varival A é: {{ a }}, o segundo valor da variável B é: {{ b[1] }} e a variável C é: {{ C }}"
+...

@@ -1,0 +1,11 @@
+---
+- name: coletar hostname
+  hosts: all
+  tasks:
+    - name: coleta
+      shell: "hostname"
+      register: bazinga
+    - name: debug
+      debug:
+        msg: Apresentando o nome dos servers {{ bazinga }}
+...

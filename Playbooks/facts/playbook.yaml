@@ -1,0 +1,9 @@
+---
+- hosts: apt
+  tasks:
+    - name: coletar ipv4
+      debug:
+        msg:
+        - "Método 1 {{ ansible_default_ipv4.address }}"
+        - "Método 2 {{ ansible_default_ipv4['address'] }}"
+...

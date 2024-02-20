@@ -76,7 +76,7 @@
     - No inicio do curso foi criado um arquivo com o nome `hosts`.
     - Nesse vídeo o instrutor mostra como colocar no arquivo padrão do ansible sem colocar o `-i ARQUIVO`, porém na instalação do Ansible não colocou os arquivos padrões que normalmente ficam em `/etc/ansible/`.
 
-## Ad-hoc
+## Seção 3: Ad-hoc
 
 10. Ad-hoc
     - O que significa Ad-hoc: Ad hoc significa “para esta finalidade", “para isso” ou "para este efeito". É uma expressão latina, geralmente usada para informar que determinado acontecimento tem caráter temporário e que se destina para aquele fim específico.
@@ -92,7 +92,7 @@
         -b          | Substituir para o usuário root caso precisar.
         -a          | argumento do módulo.
 
-## Conhecendo módulos com o comando Ad-hoc
+## Seção 4: Conhecendo módulos com o comando Ad-hoc
 
 11. Introdução aos módulos
     - São utilizados para rodar comandos especificos nas máquinas
@@ -157,13 +157,13 @@
     - Módulo para configuração do timezone
     - `ansible -i hosts host-ubuntu -b -m timezone -a "name=America/Sao_Paulo"` *alterando o timezone*
 
-## Primeiro Playbook
+## Seção 5: Primeiro Playbook
 
 23. Sintaxe Yaml
     - Explicado como é criado um arquivo YAML e como ele é utilizado.
 
 24. Instalando e habilitando o Nginx
-    - Vamos criar nosso primeiro playbook
+    - Vamos criar nosso primeiro playbook (diretório `Playbooks/nginx`)
     - Resumo:
         - Instalar o Nginx garantindo que está ativo e iniciando com o sistema
         - Garantir que o arquivo de configuração do Nginx esteja integro e fazer o deploy de uma página
@@ -183,20 +183,34 @@
 28. Criando templates
     - Utilizando template com arquivo de extensão `.j2` trazendo facts do servidor
 
-## Variáveis em Playbooks
+## Seção 6: Variáveis em Playbooks
 
 29. Introdução as váriaveis
     - Verificando váriaveis válidas e não válidas
 
 30. Váriaveis dentro do playbook
-    - Criando novo playbook
-    - mostrando em tela váriaveis decladas
+    - Criando novo playbook (diretório `Playbooks/vars`)
+    - mostrando em tela váriaveis declaradas
 
 31. Alterando váriaveis via linha de comando
     - `ansible-playbook playbook.yaml -e username=morpheus` *comando para declarar váriaveis via linha de comando do Ansible*
 
 32. Váriaveis no diretório host_vars
-    - criando um diretorio `host_vars` e declarando váriaveis
+    - criando um diretorio `host_vars` e declarando váriaveis (diretório `Playbooks/vars_host_vars`)
 
 33. Declarar facts no playbook
-    - 
+    - criando playbook extraindo facts e declarando (diretório `Playbooks/facts`)
+
+34. Módulo register para armazenar saída em variável
+    - criando playbook para testar módulo `register` (diretório `Playbooks/register`)
+
+35. Utilizando arquivo YAML para variáveis
+    - criando playbook utilizando um arquivo yaml para declarar variáveis (diretório `Playbooks/vars_yaml_json`)
+
+36. Utilizando arquivo JSON para variáveis
+    - criando playbook utilizando um arquivo json para declarar variáveis (diretório `Playbooks/vars_yaml_json`)
+
+## Seção 7: Condições, Loops e operadores
+
+37. Operadores aritméticos
+    
