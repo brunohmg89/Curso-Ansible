@@ -213,4 +213,46 @@
 ## Seção 7: Condições, Loops e operadores
 
 37. Operadores aritméticos
-    
+    - Ensinando sobre os operadores aritiméticos (diretório `Playbooks/operadores`)
+
+38. Operadores de comparação
+    - Ensinando sobre operadores de comparação de variáveis (diretório `Playbooks/operadores`)
+
+39. Operadores lógicos
+    - Ensinando sobre operadores lógicos (diretório `Playbooks/operadores`)
+
+40. Executar playbook em S.O especifico
+    - Aplicando operadores lógicos para confirmar sistemas operacionais (diretório `Playbooks/operadores`)
+
+41. Executar se for de um grupo do inventário
+    - Aplicando operadores lógicos para instalação de softwares em grupo especifico de servidores, conforme inventário (diretório `Playbooks/operadores`)
+
+42. Entendendo loops
+    - Trabalhando com loop (diretório `Playbooks/operadores`)
+
+43. Criando usuários com loop
+    - Criando 3 usuários no linux utilizando o loop (diretório `Playbooks/operadores`)
+
+44. Criando fact personalizado e execução de task com base no sucesso ou na falha
+    - Executando determinado comando caso o de cima falhe, utilizando o `register` para armazenar um resultado e `when` para direcionar em caso de múltiplas opções (diretório `Playbooks/operadores`)
+
+## Seção 8: Tags
+
+45. Utilizando tags
+    - Utilizando tags em tasks (diretório `Playbooks/tags`)
+    - `ansible-playbook -i hosts tags.yaml --tags primeira` *para executar só a tarefa com a tag `primeira`*
+    - `ansible-playbook -i hosts tags.yaml --tags primeira,quarta` *para executar mais de uma tarefa*
+    - `ansible-playbook -i hosts tags.yaml --skip-tags primeira,quarta` *para não executar determinada tarefa*
+
+46. Repetindo tag
+    - Utilizando uma mesma tag em várias tarefas (diretório `Playbooks/tags`)
+    - `ansible-playbook -i hosts repeattags.yaml --tags general` *usando uma tag em comum em várias tarefas*
+
+47. Excluindo uma tarefa com a tag Never
+    - Por padrão todas as tasks no Ansible são executadas, mas com a tag `never` ela não será executada a menos que execute forçadamente (diretório `Playbooks/tags`)
+    - `ansible-playbook -i hosts nevertag.yaml --tags primeira` *para forçar a task utilizando outra tag*
+
+## Seção 9: Role
+
+48. Criando a arvore de diretórios e entendendo
+    - 

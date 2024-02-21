@@ -1,0 +1,18 @@
+---
+- name: comparadores
+  hosts: apt
+  gather_facts: false
+  vars:
+    x: 10
+    y: 5
+    list: [10, 20, 30]
+  tasks:
+    - name: comparadores
+      debug:
+        msg:
+          - "O valor de X é {{ x }} e o valor de Y é {{ y }}"
+          - "Nossa lista contém os seguintes valores {{ list }}"
+          - "X é menor que Y e X está na lista? {{ x < y and x in list }}"
+          - "X é maior que Y e X está na lista? {{ x > y and x in list }}"
+          - "X ou Y estão na lista? {{ x in list or y in list }}"
+...

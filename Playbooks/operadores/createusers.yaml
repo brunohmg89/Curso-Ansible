@@ -1,0 +1,19 @@
+---
+- name: criar usuarios em loop
+  hosts: apt
+  become: yes
+  tasks:
+    - name: criando grupo
+      shell: sudo addgroup developers
+    - name: criando tres usuarios
+      user:
+        state: present
+        createhome: yes
+        name: "{{ item.username }}"
+        groups: "{{ item.groups }}"
+        password: "{{ item.password }}"
+      loop:
+        - { username: 'dev_user', groups: 'developers', password: '$1$dwiPq/Rj$tVsqzeGNQ2OdrQcoar4qW0' }
+        - { username: 'qa_user', groups: 'developers', password: '$1$.m5vjw41$445GiRn4CovYNHxsx6EO3/' }
+        - { username: 'prod_user', groups: 'root', password: '$1$yhIz9ZwA$bBBq65ijYn8zwV89CxZXd1' }
+...

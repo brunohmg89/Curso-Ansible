@@ -1,0 +1,15 @@
+---
+- name: loops
+  hosts: apt
+  tasks:
+    - name: loop multiplo
+      loop: [1,2,3,4,5]
+      shell: echo {{ item }}
+      when: item > 5
+
+    - name: loop
+      debug:
+        msg: echo {{ item.um }} e {{ item.dois }}
+      loop:
+        - { um: "valor1", dois: "valor2" }
+...

@@ -1,0 +1,21 @@
+---
+- name: tags
+  hosts: all
+  tasks:
+    - debug:
+        msg: "Essa é a primeira task"
+      tags: 
+        - primeira
+        - general
+    - debug:
+        msg: "Essa é a segunda task"
+      tags: segunda
+    - debug:
+        msg: "Essa é a terceira task"
+      tags: 
+        - terceira
+        - general
+    - debug:
+        msg: "Essa é a quarta task"
+      tags: quarta
+...

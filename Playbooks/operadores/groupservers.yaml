@@ -1,0 +1,12 @@
+---
+- name: instalar software em grupo especifico
+  hosts: all
+  become: yes
+  tasks:
+    - name: instalar ftp em servidores deb
+      apt:
+        name: vsftpd
+        update_cache: yes
+        state: latest
+      when: inventory_hostname in groups["apt"]
+...

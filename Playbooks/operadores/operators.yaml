@@ -1,0 +1,17 @@
+---
+- name: operacoes aritimeticas
+  hosts: deb
+  vars:
+    num1: 10
+    num2: 5
+  tasks:
+    - name: calculations
+      debug:
+        msg:
+          - "Esse é o num1 {{ num1 }} e esse é o num2 {{ num2 }}"
+          - "Multiplicação {{ num1*num2 }}"
+          - "Soma {{ num1+num2 }}"
+          - "Subtração {{ num1-num2 }}"
+          - "Divisão {{ num1/num2 }}"
+          - "Resto divisão {{ num1%num2 }}"
+...

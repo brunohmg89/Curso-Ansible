@@ -1,0 +1,19 @@
+---
+- name: saida com fact personalizado
+  hosts: apt
+  tasks:
+    - name: registrar fact
+      shell: echo "ola" # Comando de sucesso
+      register: resultado
+      ignore_errors: True
+
+    - name: executar caso falhar
+      debug:
+        msg: FALHOU
+      when: resultado is failed
+
+    - name: executar caso sucesso
+      debug:
+        msg: SUCESSO
+      when: resultado is succeeded
+...

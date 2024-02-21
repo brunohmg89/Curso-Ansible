@@ -1,0 +1,19 @@
+---
+- name: comparadores
+  hosts: apt
+  vars:
+    num1: 10
+    num2: 5
+  tasks:
+    - name: comparadores
+      debug:
+        msg:
+          - "Valor num1 é {{ num1 }}"
+          - "Valor num2 é {{ num2 }}"
+          - "Num1 é diferente de Num2 {{ num1!=num2 }}"
+          - "Num1 é igual a Num2 {{ num1==num2 }}"
+          - "Num1 é maior que Num2 {{ num1>num2 }}"
+          - "Num1 é menor que Num2 {{ num1<num2 }}"
+          - "Num1 é maior ou igual a Num2 {{ num1>=num2 }}"
+          - "Num1 é menor ou igual a Num2 {{ num1<=num2 }}"
+...
