@@ -255,4 +255,20 @@
 ## Seção 9: Role
 
 48. Criando a arvore de diretórios e entendendo
-    - 
+    - Criando a arvore de diretório do Ansible
+    - `ansible-galaxy init DIRETORIO` *o Ansible cria uma arvore de diretorio*
+    - Arvore de diretório do Ansible:
+    ![image3](img/image3.png)
+        Diretório         | Descrição
+        ---------         |---------
+        Defaults          | Variáveis padrão da role
+        Files             | Arquivos que vão ser utilizados pela role
+        Handlers          | Manipuladores que podem ou não ser usados pela role
+        Meta              | Dependências utilizadas pela role
+        Tasks             | Lista de tarefas que vão ser executadas na role
+        Templates         | Modelos que vão ser utilizados pela role
+        Tests             | Diretório para testar os playbooks antes de aplicados em produção
+        Vars              | Variáveis personalizadas da role
+
+49. Role para alterar o motd dos servidores linux
+    - Criando uma role, utilizando a arvore de diretórios criado pelo Ansible para separar cada arquivo em seu lugar utilizando vários arqvivos (diretório `Roles/roles1`)

@@ -1,0 +1,4 @@
+---
+# tasks file for role
+system_manager: admin@empresa.com
+...

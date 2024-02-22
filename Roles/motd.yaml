@@ -1,0 +1,9 @@
+---
+- name: role motd
+  hosts: apt
+  become: yes
+
+  roles:
+    - role: role1
+      system_manager: admin@empresa.com
+...
