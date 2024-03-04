@@ -1,15 +1,20 @@
-#- hosts: deb
-#  become: yes
-#  roles:
-#    - install_nginx
+- hosts: deb
+  become: yes
+  roles:
+    - install_nginx
 #    - install_docker
     
-- hosts: manager
-  become: yes
-  roles:
-    - docker_swarm_manager
+#- hosts: manager
+#  become: yes
+#  roles:
+#    - docker_swarm_manager
 
-- hosts: workers
-  become: yes
-  roles:
-    - docker_swarm_worker
+#- hosts: workers
+#  become: yes
+#  roles:
+#    - docker_swarm_worker
+
+#- hosts: manager
+#  become: yes
+#  roles:
+#    - deploy_stack

@@ -63,6 +63,32 @@
     - Inseri a instalação do componente `docker` na role `install_docker`
 
 15. Fazendo deploy da stack
-    - 
+    - Adicionei a role `install_docker` a instalação do `pip` e uma nova task para instalação do `jsondiff`
+    - Depois dessa atualização, consegui realizar a concluir a task de deploy de um app no docker swarm.
+
+## Seção 3: Outras funcionalidades do Ansbile
+
+16. Criando app com express
+    - instalando npm no container linux da minha maquina onde está instalando o Ansible
+
+17. Rodando npm remotamente
+    - Editande a role `install_nginx` para instalação e cópia do arquivo do NPM
+    - Instalado npm, node e copiado arquivos para os hosts
+
+18. Trabalhando com templates
+    - Criando um arquivo de template `.j2` para o arquivo `index.js` alterando o que é apresentado na tela inicial por um variável.
+
+19. Criando service para nossa app
+    - Configurado o app na porta 3002
+    - Liberei firewall GCP
+    - Criado um service nos servidores iniciando o app
+
+20. Configurando Nginx como proxy reverso
+    - Configurando um arquivo nginx para trabalhar como um proxy reverso
+    - Criando um handler para quando alterar o arquivo de conf do Nginx o serviço seja reiniciado
+    - O Wesley substituiu um arquivo de conf que não era para ser substituido, com isso precisará entrar em cada server para reconstruir o arquivo `nginx.conf`
+
+21. Considerações finais    
+    - Concluindo configuração do Nginx como proxy reverso
 
 
