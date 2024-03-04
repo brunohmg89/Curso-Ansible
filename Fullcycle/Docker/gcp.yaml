@@ -1,0 +1,14 @@
+plugin: gcp_compute
+projects:
+  - eminent-yen-317712
+auth_kind: serviceaccount
+service_account_file: ansible_sa.json
+ips:
+  - natIP
+#hostnames:
+#  - name
+groups:
+ # deb: "'ubuntu' in name"
+  manager: "'manager-ubuntu' in name"
+  workers: "'host-ubuntu2' or 'host-ubuntu3' in name"
+  deb: "'host-ubuntu2' or 'host-ubuntu3' or manager-ubuntu in name"

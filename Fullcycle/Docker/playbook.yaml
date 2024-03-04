@@ -1,0 +1,17 @@
+---
+- name: primeiro playbook
+  hosts: deb
+  become: yes
+  gather_facts: false
+
+  tasks:
+    - name: install nginx
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+    - name: init nginx
+      service:
+        name: nginx
+        state: started
+

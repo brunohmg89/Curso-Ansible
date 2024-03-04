@@ -1,0 +1,20 @@
+---
+#- name: show ip
+#  debug:
+#    msg: 
+#      - "{{ ansible_default_ipv4.address }}"
+#      - "{{ ansible_host }}"
+#      - "{{ hostvars[groups['manager'][0]]['inventory_hostname'] }}"
+#      - "{{ hostvars[groups[workers] }}"
+#      - "{{ hostvars[groups['workers']].networkInterfaces }}" #  | list 
+#      - "{{ hostvars[groups['manager'][0]].join_token_worker }}"
+
+- name: join swarm cluster
+  docker_swarm:
+    state: join
+    advertise_addr: "{{ ansible_host }}"
+    join_token: "{{ hostvars[groups['manager'][0]].join_token_worker }}"
+    remote_addrs: "{{ hostvars[groups['manager'][0]]['inventory_hostname'] }}"
+
+
+
